@@ -109,11 +109,13 @@ class ElasticsearchCookbook::InstallProvider < Chef::Provider::LWRPBase
     pkg_r = if node['platform_family'] == 'debian'
               dpkg_package "#{Chef::Config[:file_cache_path]}/#{filename}" do
                 options package_options
+                version new_resource.version
                 action :nothing
               end
             else
               package "#{Chef::Config[:file_cache_path]}/#{filename}" do
                 options package_options
+                version new_resource.version
                 action :nothing
               end
             end
